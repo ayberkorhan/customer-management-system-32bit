@@ -7,7 +7,7 @@ import deneme99.phone;
 
 import java.sql.*;  
   
-public class custdao {  
+public class custdao implements daos {  
   
     public static Connection getConnection(){  
         Connection con=null;  
@@ -37,7 +37,7 @@ public class custdao {
     }  
     
     
-    public static int save1(cust e){  
+ /*   public static int save1(cust e){  
         int status=0;  
         try{  
             Connection con=custdao.getConnection();  
@@ -54,7 +54,7 @@ public class custdao {
         }catch(Exception ex){ex.printStackTrace();}  
           
         return status;  
-    } 
+    } */
     
     
     
@@ -110,7 +110,7 @@ public class custdao {
           
         return e;  
     } */ 
-    public static List<cust> getAllcustomers(){  
+   /* public static List<cust> getAllcustomers(){  
         List<cust> list=new ArrayList<cust>();  
         try{  
             Connection con=custdao.getConnection();  
@@ -130,7 +130,7 @@ public class custdao {
         }catch(Exception e){e.printStackTrace();}  
           
         return list;  
-    }  
+    }  */
     
     public static List<cust> getAllphones(){  
         List<cust> list=new ArrayList<cust>();  

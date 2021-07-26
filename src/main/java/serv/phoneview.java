@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.custdao;
+import dao.psavedao;
 import deneme99.cust;   
 
 @WebServlet("/phone")  
@@ -22,7 +23,7 @@ public class phoneview extends HttpServlet {
         out.println("<a href='index.html'>Add New Customer Phone</a>");  
         out.println("<h1>Customer Phone List</h1>");  
           
-        List<cust> list=custdao.getAllphones();  
+        List<cust> list=psavedao.getAll();  
        
           
         out.print("<table border='1' width='100%'");  

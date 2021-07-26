@@ -10,6 +10,7 @@
     import javax.servlet.http.HttpServletRequest;  
     import javax.servlet.http.HttpServletResponse;
 
+import dao.csavedao;
 import dao.custdao;
 import deneme99.cust;
 import deneme99.phone;  
@@ -37,7 +38,7 @@ import deneme99.phone;
             d.setId(ID);  
             d.setPhone_number(Phone_number);  */
               
-            int status=custdao.save(e);  
+            int status=csavedao.save(e);  
             if(status>0){  
                 out.print("<p>Record saved successfully!</p>");  
                 request.getRequestDispatcher("index.html").include(request, response);  

@@ -9,6 +9,7 @@
     import javax.servlet.http.HttpServletResponse;
 
 import dao.custdao;
+import dao.psavedao;
 import deneme99.cust;  
     @WebServlet("/PhoneServlet")  
     public class PhoneSaveServlet extends HttpServlet {  
@@ -31,7 +32,7 @@ import deneme99.cust;
             d.setPhone_number(Phone_number);  
             
               
-            int status=custdao.save1(d);  
+            int status=psavedao.save(d);  
             if(status>0){  
                 out.print("<p>Record PHONE saved successfully!</p>");  
                 request.getRequestDispatcher("index.html").include(request, response);  
