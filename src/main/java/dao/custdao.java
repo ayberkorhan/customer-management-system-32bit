@@ -132,7 +132,7 @@ public class custdao implements daos {
         return list;  
     }  */
     
-    public static List<cust> getAllphones(){  
+   /* public static List<cust> getAllphones(){  
         List<cust> list=new ArrayList<cust>();  
         try{  
             Connection con=custdao.getConnection();  
@@ -154,7 +154,7 @@ public class custdao implements daos {
         }catch(Exception e){e.printStackTrace();}  
           
         return list;  
-    }
+    }*/
     
     
     
