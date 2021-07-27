@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
 
-import dao.custdao;
-import dao.psavedao;
-import dao.pviewdao;
-import deneme99.cust;   
+import dao.PhoneDao;
+import model.cust;   
 
 @WebServlet("/phone")  
 public class phoneview extends HttpServlet {  
@@ -23,8 +21,10 @@ public class phoneview extends HttpServlet {
         PrintWriter out=response.getWriter();  
         out.println("<a href='index.html'>Add New Customer Phone</a>");  
         out.println("<h1>Customer Phone List</h1>");  
+        
+        PhoneDao pview= new PhoneDao();
           
-        List<cust> list=pviewdao.getAll();  
+        List<cust> list=pview.getAll();  
        
           
         out.print("<table border='1' width='100%'");  

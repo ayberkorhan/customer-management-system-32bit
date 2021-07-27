@@ -10,10 +10,9 @@
     import javax.servlet.http.HttpServletRequest;  
     import javax.servlet.http.HttpServletResponse;
 
-import dao.csavedao;
-import dao.custdao;
-import deneme99.cust;
-import deneme99.phone;  
+import dao.CustomerDao;
+import dao.ConnectionDao;
+import model.cust;
     @WebServlet("/SaveServlet")  
     public class SaveServlet extends HttpServlet {  
         protected void doPost(HttpServletRequest request, HttpServletResponse response)   
@@ -33,12 +32,14 @@ import deneme99.phone;
             /*int ID=Integer.parseInt("ID");
             int Phone_number=Integer.parseInt("Phone_number");
             
+            
            
             phone d=new phone();  
             d.setId(ID);  
             d.setPhone_number(Phone_number);  */
+            CustomerDao csave= new CustomerDao();
               
-            int status=csavedao.save(e);  
+            int status=csave.save(e);  
             if(status>0){  
                 out.print("<p>Record saved successfully!</p>");  
                 request.getRequestDispatcher("index.html").include(request, response);  

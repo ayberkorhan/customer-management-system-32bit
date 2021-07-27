@@ -8,9 +8,9 @@
     import javax.servlet.http.HttpServletRequest;  
     import javax.servlet.http.HttpServletResponse;
 
-import dao.custdao;
-import dao.psavedao;
-import deneme99.cust;  
+import dao.ConnectionDao;
+import dao.PhoneDao;
+import model.cust;  
     @WebServlet("/PhoneServlet")  
     public class PhoneSaveServlet extends HttpServlet {  
         protected void doPost(HttpServletRequest request, HttpServletResponse response)   
@@ -31,8 +31,9 @@ import deneme99.cust;
             d.setID(ID1);  
             d.setPhone_number(Phone_number);  
             
+            PhoneDao psave= new PhoneDao();
               
-            int status=psavedao.save(d);  
+            int status=psave.save(d);  
             if(status>0){  
                 out.print("<p>Record PHONE saved successfully!</p>");  
                 request.getRequestDispatcher("index.html").include(request, response);  

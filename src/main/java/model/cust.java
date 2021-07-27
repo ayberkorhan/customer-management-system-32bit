@@ -1,4 +1,4 @@
-package deneme99;
+package model;
 
 public class cust {  
 private int ID,PID;  
