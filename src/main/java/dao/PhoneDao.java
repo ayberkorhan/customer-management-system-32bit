@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,21 +8,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import model.cust;
 
 public class PhoneDao extends ConnectionDao implements Idaos {
 
     public  int save(cust e){  
         int status=0;  
-        Connection con=getConnection();  
-
+        //Connection con=getConnection();  
+        //Connection con=(Connection) myDataSource();
+        DataSource ds = myDataSource();
+        Connection con = null;
         try{  
+        	con= ds.getConnection();
+
             //PreparedStatement ps=con.prepareStatement(  
                          //"insert into Phone(ID,Phone_number) values (?,?)");  
         	PsMetodu("insert into Phone(ID,Phone_number) values (?,?)",con);
         
             ps.setInt(1,e.getPID());  
-            ps.setString(2,e.getPhone_number());  
+            ps.setString(2, e.getPhone_number());
+            
               
               
             status=ps.executeUpdate();  
@@ -49,22 +57,25 @@ public class PhoneDao extends ConnectionDao implements Idaos {
     
     public  List<cust> getAll(){  
         List<cust> list=new ArrayList<cust>();  
+        DataSource ds = myDataSource();
+        Connection con = null;
         try{  
-            Connection con=getConnection(); 
-            
+            //Connection con=getConnection(); 
+        	con= ds.getConnection();
             
             //PreparedStatement ps=con.prepareStatement("select T1.FirstName,T1.LastName,GROUP_CONCAT(distinct T2.Phone_number) num\n"
             		//+ "from Customers AS T1  INNER JOIN Phone T2 on T1.ID = T2.ID GROUP BY T1.ID  ");  
-            PsMetodu("select T1.FirstName,T1.LastName,GROUP_CONCAT(distinct T2.Phone_number) num\n"
+            PsMetodu("select T1.ID, T1.FirstName,T1.LastName,GROUP_CONCAT(distinct T2.Phone_number) num\n"
             		+ "from Customers AS T1  INNER JOIN Phone T2 on T1.ID = T2.ID GROUP BY T1.ID  ",con);
             
             ResultSet rs=ps.executeQuery();  
             while(rs.next()){  
   
                 cust e=new cust(); 
-                e.setName(rs.getString(1));  
-                e.setPassword(rs.getString(2));  
-                e.setPhone_number(rs.getString(3));
+                e.setId(rs.getObject(1));
+                e.setName(rs.getString(2));  
+                e.setPassword(rs.getString(3));  
+                e.setPhone_number(rs.getString(4));
                  
                 list.add(e);  
                 

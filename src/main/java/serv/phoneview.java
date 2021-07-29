@@ -28,9 +28,9 @@ public class phoneview extends HttpServlet {
        
           
         out.print("<table border='1' width='100%'");  
-        out.print("<tr><th>soyisim</th><th>isim</th><th>telno</th></tr>");  
+        out.print("<tr><th>ID</th><th>isim</th><th>soyisim</th><th>telno</th></tr>");  
         for(cust e:list){  
-         out.print("<tr><td>"+e.getFirstName()+"</td><td>"+e.getLastName()+"</td><td>"+e.getPhone_number()+"</td></tr>");  
+         out.print("<tr><td>"+e.getID()+"</td><td>"+e.getFirstName()+"</td><td>"+e.getLastName()+"</td><td>"+e.getPhone_number()+"</td></tr>");  
         }  
         out.print("</table>");  
           

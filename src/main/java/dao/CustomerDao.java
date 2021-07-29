@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
 
 import model.cust;
 
@@ -15,8 +16,11 @@ public class CustomerDao extends ConnectionDao implements Idaos  {
 	public int save(cust e)  {  
         int status=0;  
         
-        Connection con=getConnection();  
+        //Connection con=(Connection) myDataSource(); 
+        DataSource ds = myDataSource();
+        Connection con = null;
         try{  
+        	con= ds.getConnection();
             
         	String sql ="insert into Customers(LastName,FirstName) values (?,?)";
         	        	
@@ -54,8 +58,12 @@ public class CustomerDao extends ConnectionDao implements Idaos  {
 
 	public  List<cust> getAll(){  
         List<cust> list=new ArrayList<cust>();  
+        DataSource ds = myDataSource();
+        Connection con = null;
         try{  
-            Connection con=getConnection();  
+            //Connection con=getConnection();  
+            //Connection con=(Connection) myDataSource();  
+        	con= ds.getConnection();
             
             
            // PreparedStatement ps=con.prepareStatement("select * from Customers AS T1  INNER JOIN Phone T2 on T1.ID = T2.ID"); 

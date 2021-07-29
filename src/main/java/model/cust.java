@@ -1,12 +1,19 @@
 package model;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
+
 public class cust {  
-private int ID,PID;  
-private String FirstName,LastName,Email, Phone_number;  
-public int getID() {  
+private int PID;  
+private Object ID;
+private String FirstName,LastName,Email ,Phone_number;  
+private List<String> Phone_numbe = new ArrayList<String>();
+public Object getID() {  
     return ID;  
 }  
-public void setId(int ID) {  
+public void setId(Object ID) {  
     this.ID = ID;  
 }  
 public String getFirstName() {  
@@ -43,5 +50,27 @@ public String getPhone_number() {
 public void setPhone_number(String Phone_number) {  
     this.Phone_number = Phone_number;  
 }  
+
+
+
+
+
+
+
+
+
+public List<String> getPhone_numbe() {
+    return Phone_numbe;
+}
+
+public void setPhone_numbe(ArrayList<String> Phone_numbe)
+{
+    this.Phone_numbe = Phone_numbe;
+}
+
+
+
+
+
   
 }  

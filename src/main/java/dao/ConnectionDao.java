@@ -2,6 +2,10 @@ package dao;
 
 import java.util.*;
 
+import javax.sql.DataSource;
+
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 import model.cust;
 
 import java.sql.*;  
@@ -33,7 +37,16 @@ public class ConnectionDao implements Idaos {
    }
 
 
-	
+   public DataSource myDataSource() {
+	   MysqlDataSource mysqlDS = new MysqlDataSource();
+	   mysqlDS.setURL("jdbc:mysql://localhost:3306/alisveris");
+	   mysqlDS.setUser("ayberk");
+	   mysqlDS.setPassword("password");
+	   mysqlDS.setDatabaseName("alisveris");
+
+	   return mysqlDS;
+
+	   }
     
     
     
