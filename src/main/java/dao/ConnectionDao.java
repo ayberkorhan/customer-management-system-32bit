@@ -10,11 +10,11 @@ import model.cust;
 
 import java.sql.*;  
   
-public class ConnectionDao implements Idaos {
+public  class ConnectionDao implements Idaos {
 	 PreparedStatement ps;
 	static cust e;
   
-    public  Connection getConnection(){  
+    public static Connection getConnection(){  
         Connection con=null;  
         
         try{  
@@ -37,7 +37,7 @@ public class ConnectionDao implements Idaos {
    }
 
 
-   public DataSource myDataSource() {
+   public static DataSource myDataSource() {
 	   MysqlDataSource mysqlDS = new MysqlDataSource();
 	   mysqlDS.setURL("jdbc:mysql://localhost:3306/alisveris");
 	   mysqlDS.setUser("ayberk");
