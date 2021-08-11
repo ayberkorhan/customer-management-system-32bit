@@ -27,7 +27,7 @@ public class PhoneDao extends ConnectionDao implements Idaos {
                          //"insert into Phone(ID,Phone_number) values (?,?)");  
         	PsMetodu("insert into Phone(ID,Phone_number) values (?,?)",con);
         
-            ps.setInt(1,e.getPID());  
+            ps.setString(1,e.getID().toString());  
             ps.setString(2, e.getPhone_number());
             
               

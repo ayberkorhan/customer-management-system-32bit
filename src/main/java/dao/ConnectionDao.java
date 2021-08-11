@@ -37,7 +37,7 @@ public  class ConnectionDao implements Idaos {
    }
 
 
-   public static DataSource myDataSource() {
+   public  DataSource myDataSource() {
 	   MysqlDataSource mysqlDS = new MysqlDataSource();
 	   mysqlDS.setURL("jdbc:mysql://localhost:3306/alisveris");
 	   mysqlDS.setUser("ayberk");

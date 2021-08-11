@@ -22,14 +22,15 @@ public class CustomerDao extends ConnectionDao implements Idaos  {
         try{  
         	con= ds.getConnection();
             
-        	String sql ="insert into Customers(LastName,FirstName) values (?,?)";
+        	String sql ="insert into Customers(LastName,FirstName,ID) values (?,?,?)";
         	        	
         	PsMetodu(sql,con);
             //PreparedStatement ps=con.prepareStatement(  
                          //"insert into Customers(LastName,FirstName) values (?,?)");  
-        
+            
             ps.setString(1,e.getLastName());  
-            ps.setString(2,e.getFirstName());  
+            ps.setString(2,e.getFirstName()); 
+            ps.setString(3,e.getID().toString()); 
               
             status=ps.executeUpdate();                
             con.close();
