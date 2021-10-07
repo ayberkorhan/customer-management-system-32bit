@@ -14,7 +14,7 @@ import model.cust;
 
 public class PhoneDao extends ConnectionDao implements Idaos {
 
-    public  int save(cust e){  
+    public  int save(cust e,String arr[]){  
         int status=0;  
         //Connection con=getConnection();  
         //Connection con=(Connection) myDataSource();
@@ -27,12 +27,25 @@ public class PhoneDao extends ConnectionDao implements Idaos {
                          //"insert into Phone(ID,Phone_number) values (?,?)");  
         	PsMetodu("insert into Phone(ID,Phone_number) values (?,?)",con);
         
-            ps.setString(1,e.getID().toString());  
-            ps.setString(2, e.getPhone_number());
+           // ps.setString(1,e.getID().toString());  
+            //ps.setString(2, e.getPhone_number());
+            
+            
+            for (int i = 0; i < arr.length; i++) {
+                ps.setObject(1, e.getID());
+                String tempString = arr[i];
+                ps.setString(2, tempString);
+
+
+                
+                status = ps.executeUpdate();
+            }
+            
+            
             
               
               
-            status=ps.executeUpdate();  
+            //status=ps.executeUpdate();  
               
             con.close();  
         }catch(Exception ex){ex.printStackTrace();}
@@ -65,8 +78,10 @@ public class PhoneDao extends ConnectionDao implements Idaos {
             
             //PreparedStatement ps=con.prepareStatement("select T1.FirstName,T1.LastName,GROUP_CONCAT(distinct T2.Phone_number) num\n"
             		//+ "from Customers AS T1  INNER JOIN Phone T2 on T1.ID = T2.ID GROUP BY T1.ID  ");  
-            PsMetodu("select T1.ID, T1.FirstName,T1.LastName,GROUP_CONCAT(distinct T2.Phone_number) num\n"
-            		+ "from Customers AS T1  INNER JOIN Phone T2 on T1.ID = T2.ID GROUP BY T1.ID  ",con);
+            PsMetodu("SELECT T1.ID, T1.FirstName,T1.LastName,  T1.Phone_number , Store_Name From Stores s  \n"
+            		+ "INNER JOIN (SELECT c.ID , c.FirstName , c.LastName , GROUP_CONCAT(Phone_number) as Phone_number \n"
+            		+ "From Customers as c  INNER JOIN Phone as cp ON c.ID = cp.ID \n"
+            		+ "GROUP BY c.ID) T1    ON T1.ID= s.ID ",con);
             
             ResultSet rs=ps.executeQuery();  
             while(rs.next()){  
@@ -76,6 +91,7 @@ public class PhoneDao extends ConnectionDao implements Idaos {
                 e.setName(rs.getString(2));  
                 e.setPassword(rs.getString(3));  
                 e.setPhone_number(rs.getString(4));
+                e.setStore_Name(rs.getString(5));
                  
                 list.add(e);  
                 

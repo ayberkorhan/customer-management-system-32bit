@@ -54,6 +54,48 @@ public class CustomerDao extends ConnectionDao implements Idaos  {
           
         return status;  
     }  
+	public int savestory(cust e)  {  
+        int status=0;  
+        
+        //Connection con=(Connection) myDataSource(); 
+        DataSource ds = myDataSource();
+        Connection con = null;
+        try{  
+        	con= ds.getConnection();
+            
+        	String sql ="insert into Stores(ID,Store_Name) values (?,?)";
+        	        	
+        	PsMetodu(sql,con);
+            //PreparedStatement ps=con.prepareStatement(  
+                         //"insert into Customers(LastName,FirstName) values (?,?)");  
+            
+            ps.setObject(1, e.getID().toString());
+            ps.setString(2,e.getStore_Name()); 
+            
+              
+            status=ps.executeUpdate();                
+            con.close();
+            System.out.println("store");
+             
+        }catch(Exception ex){ex.printStackTrace();}
+        finally {
+        	 try {
+				ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+        	 try {
+				con.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	 
+        }
+          
+        return status;  
+    }  
 	
 	
 
@@ -76,7 +118,7 @@ public class CustomerDao extends ConnectionDao implements Idaos  {
                 e.setId(rs.getInt(1));  
                 e.setName(rs.getString(2));  
                 e.setPassword(rs.getString(3));  
-                e.setEmail(rs.getString(4)); 
+                e.setStore_Name(rs.getString(4)); 
                 e.setPhone_number(rs.getString(5));
                 e.setID(rs.getInt(6));  
                 list.add(e);  

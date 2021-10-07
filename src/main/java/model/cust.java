@@ -8,7 +8,7 @@ import java.util.List;
 public class cust {  
 private int PID;  
 private Object ID;
-private String FirstName,LastName,Email ,Phone_number;  
+private String FirstName,LastName,Store_Name ,Phone_number;  
 private List<String> Phone_numbe = new ArrayList<String>();
 public Object getID() {  
     return ID;  
@@ -28,11 +28,11 @@ public String getLastName() {
 public void setPassword(String LastName) {  
     this.LastName = LastName;  
 }  
-public String getEmail() {  
-    return Email;  
+public String getStore_Name() {  
+    return Store_Name;  
 }  
-public void setEmail(String Email) {  
-    this.Email = Email;  
+public void setStore_Name(String Store_Name) {  
+    this.Store_Name = Store_Name;  
 }  
 
 

@@ -1,5 +1,6 @@
 package services;
 
+import javax.annotation.security.RolesAllowed;
 import javax.jws.WebService;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,6 +12,7 @@ import dao.CustomerDao;
 import dao.PhoneDao;
 import model.cust;
 @WebService(endpointInterface = "services.Iservice")
+@RolesAllowed("ekleme")
 public class custservice implements Iservice {
 
 	@POST
@@ -20,6 +22,8 @@ public class custservice implements Iservice {
 	String Lastname,@PathParam("Phone_number") String Phone_number) {
 		// TODO Auto-generated method stub
 		
+		String arrayphone[] = Phone_number.split(",");
+
 		
 		   cust e=new cust();  
 		   e.setId(ID);  
@@ -32,7 +36,7 @@ public class custservice implements Iservice {
              
            int status=csave.save(e);
            PhoneDao pdao = new PhoneDao();
-           int status1 = pdao.save(e);
+           int status1 = pdao.save(e,arrayphone);
            
            
            

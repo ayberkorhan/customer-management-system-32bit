@@ -17,6 +17,8 @@ import model.cust;
              throws ServletException, IOException {  
             response.setContentType("text/html");  
             PrintWriter out=response.getWriter();  
+            
+
               
             //int ID=request.getParameter("ID");  
       
@@ -30,10 +32,11 @@ import model.cust;
             cust d=new cust();  
             d.setID(ID1);  
             d.setPhone_number(Phone_number);  
-            
+            String arrayphone[] = Phone_number.split(",");
+
             PhoneDao psave= new PhoneDao();
               
-            int status=psave.save(d);  
+            int status=psave.save(d,arrayphone);  
             if(status>0){  
                 out.print("<p>Record PHONE saved successfully!</p>");  
                 request.getRequestDispatcher("index.html").include(request, response);  

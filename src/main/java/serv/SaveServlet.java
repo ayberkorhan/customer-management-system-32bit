@@ -27,7 +27,7 @@ import model.cust;
             cust e=new cust();  
             e.setName(name);  
             e.setPassword(password);  
-            e.setEmail(email);  
+           // e.setEmail(email);  
             
             /*int ID=Integer.parseInt("ID");
             int Phone_number=Integer.parseInt("Phone_number");
